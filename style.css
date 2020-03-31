@@ -1,0 +1,16 @@
+body {
+    background-color:slategray;
+}
+.container {
+    max-width: 800px;
+    border: 1px solid;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    background-color: snow;
+    margin-top: 10px;
+}
+#start-btn {
+    width: 250px;
+    margin: 20px;
+}
