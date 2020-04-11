@@ -6,23 +6,22 @@ var specialCharacters = ["!","@","#","$","%","+","^","&","*"];
 
 var lowercaseCharacters = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","Z"];
 
-var upercaseCharacters = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O" ,"P","Q","R","S","T","U","V","W","X","Y","Z"];
+var uppercaseCharacters = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O" ,"P","Q","R","S","T","U","V","W","X","Y","Z"];
 
 
-function getPasswordOptions() {
-    var lengthPassword = parseInt(prompt("How Many Character?"));
-    console.log(lengthPassword);
+function yourPasswordOptions() {
+    var passwordLength = parseInt(prompt("How Many Character?"));
 
-    if (isNaN(lengthPassword) === true) {
-        alert("Password length must be a number");
+    if (isNaN(passwordLength) === true) {
+        alert("En Numeros Por Favor");
         return;
     }
-    if (lengthPassword < 8) {
-        alert("Password length must be over 8 characters");
+    if (passwordLength < 8) {
+        alert("Minimum password length is 9 characters");
         return;
     }
-    if (lengthPassword > 128) {
-        alert("Password cannot exceed 129 characters");
+    if (passwordLength > 128) {
+        alert("Isn't 128 enough?");
         return;
     }
 
@@ -49,12 +48,12 @@ function getPasswordOptions() {
     }
 
     var passwordOptions = {
-        lengthPassword: lengthPassword,
-        hasSpecialCharacters: hasSpecialCharacters,
-        hasLowercaseLetters: hasLowercaseLetters, 
-        hasUppercaseLetters: hasUppercaseLetters,
-        hasNumericCharacters: hasNumericCharacters, 
-    }
+        passwordLength,
+        hasSpecialCharacters,
+        hasLowercaseLetters,
+        hasUppercaseLetters,
+        hasNumericCharacters,
+    } 
 
     return passwordOptions;
 
@@ -62,14 +61,14 @@ function getPasswordOptions() {
 
 function getRandom(arr) {
     var randIndex = Math.floor(Math.random() * arr.length);
-    var randElement = arr[randIndex];
-    return randElement;
+    var randDigit = arr[randIndex];
+    return randDigit;
 }
 
 
 // create a function to construct the password
 function generatePassword() {
-     var options = getPasswordOptions();
+     var options = yourPasswordOptions();
      var results = [];
      var possibleCharacters = [];
 
@@ -83,11 +82,11 @@ function generatePassword() {
         possibleCharacters = possibleCharacters.concat(numericCharacters);
     }
     if(options.hasUppercaseLetters === true) {
-        possibleCharacters = possibleCharacters.concat(upercaseCharacters)
+        possibleCharacters = possibleCharacters.concat(uppercaseCharacters)
     }
     console.log(possibleCharacters)
 
-    for (var i = 0; i < options.lengthPassword; i++) {
+    for (var i = 0; i < options.passwordLength; i++) {
         var possibleCharacter = getRandom(possibleCharacters);
         results.push(possibleCharacter);
     }
